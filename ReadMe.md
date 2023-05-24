@@ -1,5 +1,5 @@
 # Print-It-JS
 
-OpenClassRooms formation "intégrateur dveloppeur web"
+OpenClassRooms formation "intégrateur développeur web"
 
 Premiers pas sur le langage JavaScript
