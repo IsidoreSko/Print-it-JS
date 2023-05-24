@@ -1,3 +1,4 @@
+
 const slides = [
 	{
 		"image":"slide1.jpg",
@@ -16,3 +17,30 @@ const slides = [
 		"tagLine":"Autocollants <span>avec découpe laser sur mesure</span>"
 	}
 ]
+
+// Ajout de l'EvenementListener de la flèche de gauche:
+
+const arrow_left = document.querySelector('.arrow_left');
+
+function showMsg() {
+  console.log("Bonjour");
+}
+
+arrow_left.addEventListener("click", showMsg);
+
+// Ajout de l'EvenementListener de la flèche de droite:
+
+const arrow_rigth = document.querySelector('.arrow_right');
+
+function showMsg2() {
+  console.log("Au revoir");
+}
+
+arrow_rigth.addEventListener("click", showMsg2);
+
+// Comptage du nombre de "bullet point" dans le tableau:
+// En écrivant "slides.length" dans la console on obtient "4".
+
+
+
+
