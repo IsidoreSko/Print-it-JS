@@ -40,72 +40,64 @@ const slides = [
 
 // Comptage du nombre de "bullet point" dans le tableau:::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-// Création des 'bullet"
+// Création des 'bullets":
+
+let bannerImg = document.querySelector ('.banner-img');
+
 
 for (let i = 0; i < slides.length; i++) {
-	const bullet = document.createElement('div');
+	let bullet = document.createElement('div');
 	bullet.classList.add ('dot');
-	let div = document.querySelector(".dots");
-	div.appendChild(bullet);
-} 
+	const allBullet = document.querySelector('.dots');
+	allBullet.appendChild(bullet);
+	console.log('allBullet');
+}
 
-// Différencier le point qui signale la diapositive en cours de visionnage::::::::::::::::::::::::::::::::::
+// Différencier le point qui signale la photo en cours de visionnage::::::::::::::::::::::::::::::::::
 
-let imageVue = document.querySelector('.dot:nth-child(1)');
-imageVue.classList.add ('dot_selected');
+let arrayDot = document.querySelectorAll ('.dot');
+arrayDot[0].classList.add('dot_selected');
+let slideVu = 0;
+
+// Changement du "bullet" avec le changement de l'images:
+
+function bulletVu () {
+for (let i = 0; i < arrayDot.length; i++) {
+	if (i === slideVu){
+		arrayDot[i].classList.add("dot_selected");
+	} else {
+			arrayDot[i].classList.remove("dot_selected");
+	}
+}}
 
 // Teste pour effacer la bannière:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-// document.querySelector("#banner").innerHTML = '';
+// document.getElementById('banner').innerHTML = '';
 
 // :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 const arrow_left = document.querySelector('.arrow_left');
 const arrow_rigth = document.querySelector('.arrow_right');
-let bannerImg = document.querySelector ('.banner-img');
-
 let texte = document.querySelector('p')
 
-// Flèche droite:
-let i = 1;
-let y = 1;
-
-arrow_rigth.addEventListener ('click', ()=>{
-	if (i < slides.length ){
-		bannerImg.src =`./assets/images/slideshow/${slides[i++].image}`;
-		texte.innerHTML = slides[y++].tagLine;
-	}
-	else if (i = slides.length){
-		bannerImg.src =`./assets/images/slideshow/${slides[0].image}`;
-		texte.innerHTML = slides[0].tagLine;
-	}
-	
-	// else {
-	// 	bannerImg.src =`./assets/images/slideshow/${slides[i++].image}`;
-	// 	texte.innerHTML = slides[y++].tagLine;
-	// }
-})
-
-// / Flèche gauche:
-let i2 = 3;
-let y2 = 3;
 
 arrow_left.addEventListener ('click', ()=>{
-	if (i2 <= slides.length ){
-		bannerImg.src =`./assets/images/slideshow/${slides[i2--].image}`;
-		texte.innerHTML = slides[y2--].tagLine;
+	slideVu --;
+	if (slideVu === -1) {
+		slideVu = slides.length -1;
 	}
-	else if (i2 = 1 ){
-		bannerImg.src =`./assets/images/slideshow/${slides[3].image}`;
-		texte.innerHTML = slides[3].tagLine;
+	bannerImg.src =`./assets/images/slideshow/${slides[slideVu].image}`;
+	texte.innerHTML = slides[slideVu].tagLine;
+	bulletVu ();
+});
+
+
+arrow_rigth.addEventListener ('click', ()=>{
+	slideVu ++;
+	if (slideVu === slides.length) {
+		slideVu = 0;
 	}
-	else {
-		bannerImg.src =`./assets/images/slideshow/${slides[i2--].image}`;
-		texte.innerHTML = slides[y2--].tagLine;
-	}
-})
-
-
-
-
-
+	bannerImg.src =`./assets/images/slideshow/${slides[slideVu].image}`;
+	texte.innerHTML = slides[slideVu].tagLine;
+	bulletVu ();
+});
