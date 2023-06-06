@@ -42,31 +42,44 @@ const slides = [
 
 // Création des 'bullets":
 
+// Création de la constante "bnnerImg":
 let bannerImg = document.querySelector ('.banner-img');
 
 
 for (let i = 0; i < slides.length; i++) {
+	// A chaque fois on crée une nouvelle "div":
 	let bullet = document.createElement('div');
+	// On assigne une "class" ("dot") à la nouvelle "div":
 	bullet.classList.add ('dot');
+	// Récupération de la "div" parent grâce à sa "class" ("dots"):
 	const allBullet = document.querySelector('.dots');
+	// On affilie les nouvelles "div" à la "div" parent:
 	allBullet.appendChild(bullet);
+	// Teste:
 	console.log('allBullet');
 }
 
 // Différencier le point qui signale la photo en cours de visionnage::::::::::::::::::::::::::::::::::
 
-let arrayDot = document.querySelectorAll ('.dot');
-arrayDot[0].classList.add('dot_selected');
+// Création d'une liste d'éléments "dot":
+let listDot = document.querySelectorAll ('.dot');
+// Ajout d'une "class" (dot_selected) au premier élément de la liste:
+listDot[0].classList.add('dot_selected');
+
+// Changement du "bullet" avec le changement de l'image:
+
+// Initialisation de la variable "slideVu":
 let slideVu = 0;
 
-// Changement du "bullet" avec le changement de l'images:
-
+// Fonction permettant le changement:
 function bulletVu () {
-for (let i = 0; i < arrayDot.length; i++) {
+for (let i = 0; i < listDot.length; i++) {
 	if (i === slideVu){
-		arrayDot[i].classList.add("dot_selected");
+		// Ajout de la "class" (dot_selected):
+		listDot[i].classList.add("dot_selected");
 	} else {
-			arrayDot[i].classList.remove("dot_selected");
+		// Supression de la "class" (dot_selected):
+			listDot[i].classList.remove("dot_selected");
 	}
 }}
 
@@ -74,30 +87,43 @@ for (let i = 0; i < arrayDot.length; i++) {
 
 // document.getElementById('banner').innerHTML = '';
 
-// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// Changement des images et des slogans au clique sur les flèches::::::::::::::::::::
 
+// Création de constantes ou de variables:
+	// Pour la flèche de gauche:
 const arrow_left = document.querySelector('.arrow_left');
+	// Pour la flèche de droite:
 const arrow_rigth = document.querySelector('.arrow_right');
+	// Pour le slogan de la bannière:
 let texte = document.querySelector('p')
 
+// Au clic sur le flèche de gauche:
 
 arrow_left.addEventListener ('click', ()=>{
 	slideVu --;
-	if (slideVu === -1) {
+	if (slideVu == -1) {
 		slideVu = slides.length -1;
-	}
+	} 
+	// Changement de l'image dans la bannière: 
 	bannerImg.src =`./assets/images/slideshow/${slides[slideVu].image}`;
+	// Changement du slogan dans la bannière:
 	texte.innerHTML = slides[slideVu].tagLine;
+	// Changement du "bullet point" correspondant:
 	bulletVu ();
 });
 
+// Au clic sur le flèche de droite:
 
 arrow_rigth.addEventListener ('click', ()=>{
-	slideVu ++;
+	slideVu ++;	
 	if (slideVu === slides.length) {
 		slideVu = 0;
-	}
+	}	
+	// Changement de l'image dans la bannière: 
 	bannerImg.src =`./assets/images/slideshow/${slides[slideVu].image}`;
+	// Changement du slogan dans la bannière:
 	texte.innerHTML = slides[slideVu].tagLine;
-	bulletVu ();
+	// Changement du "bullet point" correspondant:
+	bulletVu ();	
 });
+
