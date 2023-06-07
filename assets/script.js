@@ -1,3 +1,5 @@
+// Code de départ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
 const slides = [
   {
     image: "slide1.jpg",
@@ -34,7 +36,7 @@ for (let i = 0; i < slides.length; i++) {
   allBullet.appendChild(bullet);
 }
 
-// Différencier le point qui signale la photo en cours de visionnage::::::::::::::::::::::::::::::::::
+// Différencier le point qui signale la photo en cours de visionnage::::::::::::::::::
 
 // Création d'une liste d'éléments "dot":
 let listDot = document.querySelectorAll(".dot");
